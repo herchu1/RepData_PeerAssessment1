@@ -3,7 +3,7 @@
 
 ## Loading and preprocessing the data
 
-```{r}
+```{r preproc}
 library(ggplot2)
 activity <- read.csv(unz('activity.zip', 'activity.csv'), stringsAsFactors = F)
 activity$date <- as.Date(activity$date)
@@ -12,7 +12,7 @@ activity$date <- as.Date(activity$date)
 
 ## What is mean total number of steps taken per day?
 
-```{r}
+```{r meantotal}
 stepsbydate <- aggregate(steps ~ date, data=activity, FUN=sum)
 ggplot(stepsbydate, aes(x=date, y=steps)) +
     geom_histogram(alpha=.5, stat="identity")
@@ -23,7 +23,7 @@ median(stepsbydate$steps, na.rm=T)
 
 ## What is the average daily activity pattern?
 
-```{r}
+```{r dailyavg}
 stepsbyinterval <- aggregate(steps ~ interval, data=activity, FUN=mean)
 ggplot(stepsbyinterval, aes(x=interval, y=steps)) + geom_line()
 maxrow <- stepsbyinterval$steps == max(stepsbyinterval$steps)
@@ -33,7 +33,7 @@ stepsbyinterval[maxrow,]$interval
 
 ## Imputing missing values
 
-```{r}
+```{r imputing}
 sum(is.na(activity$steps))
 activitynona <- merge(activity, stepsbyinterval, 'interval')
 nasteps <- is.na(activitynona$steps.x)
@@ -50,7 +50,7 @@ median(stepsbydatenona$steps)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r}
+```{r weekends}
 isweekend <- weekdays(activitynona$date, abbreviate=T) %in% c('Sat','Sun')
 activitynona$daytype[isweekend] <- 'weekend'
 activitynona$daytype[!isweekend] <- 'weekday'
