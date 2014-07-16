@@ -25,3 +25,12 @@ ggplot(stepsbydatenona, aes(x=date, y=steps)) + geom_histogram(alpha=.5, stat="i
 mean(stepsbydatenona$steps)
 median(stepsbydatenona$steps)
 
+
+isweekend <- weekdays(activitynona$date, abbreviate=T) %in% c('Sat','Sun')
+activitynona$daytype[isweekend] <- 'weekend'
+activitynona$daytype[!isweekend] <- 'weekday'
+activitynona$daytype <- as.factor(activitynona$daytype)
+
+stepsbyintervalnona <- aggregate(steps ~ interval + daytype, data=activitynona, FUN=mean)
+ggplot(stepsbyintervalnona, aes(x=interval, y=steps)) + geom_line() + facet_grid(daytype ~ .)
+
