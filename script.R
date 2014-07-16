@@ -5,7 +5,8 @@ activity$date <- as.Date(activity$date)
 
 
 stepsbydate <- aggregate(steps ~ date, data=activity, FUN=sum)
-ggplot(stepsbydate, aes(x=date, y=steps)) + geom_histogram(alpha=.5, stat="identity")
+ggplot(stepsbydate, aes(x=date, y=steps)) +
+    geom_histogram(alpha=.5, stat="identity")
 mean(stepsbydate$steps, na.rm=T)
 median(stepsbydate$steps, na.rm=T)
 
@@ -23,7 +24,8 @@ activitynona$steps.x[nasteps] <- activitynona$steps.y[nasteps]
 colnames(activitynona)[2] <- 'steps'
 
 stepsbydatenona <- aggregate(steps ~ date, data=activitynona, FUN=sum)
-ggplot(stepsbydatenona, aes(x=date, y=steps)) + geom_histogram(alpha=.5, stat="identity")
+ggplot(stepsbydatenona, aes(x=date, y=steps)) +
+    geom_histogram(alpha=.5, stat="identity")
 mean(stepsbydatenona$steps)
 median(stepsbydatenona$steps)
 
@@ -33,6 +35,8 @@ activitynona$daytype[isweekend] <- 'weekend'
 activitynona$daytype[!isweekend] <- 'weekday'
 activitynona$daytype <- as.factor(activitynona$daytype)
 
-stepsbyintervalnona <- aggregate(steps ~ interval + daytype, data=activitynona, FUN=mean)
-ggplot(stepsbyintervalnona, aes(x=interval, y=steps)) + geom_line() + facet_grid(daytype ~ .)
+stepsbyintervalnona <- aggregate(steps ~ interval + daytype,
+                                 data=activitynona, FUN=mean)
+ggplot(stepsbyintervalnona, aes(x=interval, y=steps)) +
+    geom_line() + facet_grid(daytype ~ .)
 
