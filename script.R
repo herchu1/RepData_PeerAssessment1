@@ -14,4 +14,14 @@ ggplot(stepsbyinterval, aes(x=interval, y=steps)) + geom_line()
 maxrow <- stepsbyinterval$steps == max(stepsbyinterval$steps)
 stepsbyinterval[maxrow,]$interval
 
+sum(is.na(activity$steps))
+activitynona <- merge(activity, stepsbyinterval, 'interval')
+nasteps <- is.na(activitynona$steps.x)
+activitynona$steps.x[nasteps] <- activitynona$steps.y[nasteps]
+colnames(activitynona)[2] <- 'steps'
+
+stepsbydatenona <- aggregate(steps ~ date, data=activitynona, FUN=sum)
+ggplot(stepsbydatenona, aes(x=date, y=steps)) + geom_histogram(alpha=.5, stat="identity")
+mean(stepsbydatenona$steps)
+median(stepsbydatenona$steps)
 
