@@ -51,8 +51,8 @@ sum(is.na(activity$steps))
 
 Imputing the missing values may smooth the graphics. These NA values are now
 replaced with the average of steps by interval throughout all the days. The
-averages per interval used in the imputation were calculated in the
-previous paragraph.
+averages of the number of steps per interval used in the imputation were
+calculated in the previous section.
 ```{r imputing}
 activitynona <- merge(activity, stepsbyinterval, 'interval')
 nasteps <- is.na(activitynona$steps.x)

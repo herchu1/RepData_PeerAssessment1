@@ -253,8 +253,8 @@ analysis. The number of NA values is:</p>
 
 <p>Imputing the missing values may smooth the graphics. These NA values are now
 replaced with the average of steps by interval throughout all the days. The
-averages per interval used in the imputation were calculated in the
-previous paragraph.</p>
+averages of the number of steps per interval used in the imputation were
+calculated in the previous section.</p>
 
 <pre><code class="r">activitynona &lt;- merge(activity, stepsbyinterval, &#39;interval&#39;)
 nasteps &lt;- is.na(activitynona$steps.x)
