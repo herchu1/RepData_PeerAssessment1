@@ -242,11 +242,19 @@ stepsbyinterval[maxrow,]$interval
 
 <h2>Imputing missing values</h2>
 
+<p>There are several missing values in the dataset and they might distort the
+analysis. The number of NA values is:</p>
+
 <pre><code class="r">sum(is.na(activity$steps))
 </code></pre>
 
 <pre><code>## [1] 2304
 </code></pre>
+
+<p>Imputing the missing values may smooth the graphics. These NA values are now
+replaced with the average of steps by interval throughout all the days. The
+averages per interval used in the imputation were calculated in the
+previous paragraph.</p>
 
 <pre><code class="r">activitynona &lt;- merge(activity, stepsbyinterval, &#39;interval&#39;)
 nasteps &lt;- is.na(activitynona$steps.x)

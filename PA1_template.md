@@ -71,6 +71,8 @@ stepsbyinterval[maxrow,]$interval
 
 ## Imputing missing values
 
+There are several missing values in the dataset and they might distort the
+analysis. The number of NA values is:
 
 ```r
 sum(is.na(activity$steps))
@@ -79,6 +81,11 @@ sum(is.na(activity$steps))
 ```
 ## [1] 2304
 ```
+
+Imputing the missing values may smooth the graphics. These NA values are now
+replaced with the average of steps by interval throughout all the days. The
+averages per interval used in the imputation were calculated in the
+previous paragraph.
 
 ```r
 activitynona <- merge(activity, stepsbyinterval, 'interval')
