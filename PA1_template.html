@@ -194,8 +194,12 @@ hr {
 
 <h2>Loading and preprocessing the data</h2>
 
-<pre><code class="r">library(ggplot2)
-activity &lt;- read.csv(unz(&#39;activity.zip&#39;, &#39;activity.csv&#39;), stringsAsFactors = F)
+<pre><code class="r">Sys.setlocale(&#39;LC_ALL&#39;, &#39;C&#39;)
+library(ggplot2)
+</code></pre>
+
+<pre><code class="r">activity &lt;- read.csv(unz(&#39;activity.zip&#39;, &#39;activity.csv&#39;),
+                     stringsAsFactors = FALSE)
 activity$date &lt;- as.Date(activity$date)
 </code></pre>
 

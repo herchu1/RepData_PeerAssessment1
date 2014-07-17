@@ -10,8 +10,13 @@ output:
 
 
 ```r
+Sys.setlocale('LC_ALL', 'C')
 library(ggplot2)
-activity <- read.csv(unz('activity.zip', 'activity.csv'), stringsAsFactors = F)
+```
+
+```r
+activity <- read.csv(unz('activity.zip', 'activity.csv'),
+                     stringsAsFactors = FALSE)
 activity$date <- as.Date(activity$date)
 ```
 

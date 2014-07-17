@@ -8,9 +8,13 @@ output:
 
 ## Loading and preprocessing the data
 
-```{r preproc}
+```{r init, results='hide'}
+Sys.setlocale('LC_ALL', 'C')
 library(ggplot2)
-activity <- read.csv(unz('activity.zip', 'activity.csv'), stringsAsFactors = F)
+```
+```{r preproc}
+activity <- read.csv(unz('activity.zip', 'activity.csv'),
+                     stringsAsFactors = FALSE)
 activity$date <- as.Date(activity$date)
 ```
 
